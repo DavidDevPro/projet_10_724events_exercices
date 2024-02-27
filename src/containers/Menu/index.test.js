@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, } from "@testing-library/react";
 import Menu from "./index";
 
 describe("When Menu is created", () => {
@@ -21,6 +21,20 @@ describe("When Menu is created", () => {
         })
       );
       expect(window.document.location.hash).toEqual("#contact");
+    });
+
+  });
+  describe("and a click is triggered on nos services href", () => {
+    it("document location  href change", async () => {
+      render(<Menu />);
+      fireEvent(
+        await screen.findByText("Nos services"),
+        new MouseEvent("click", {
+          cancelable: true,
+          bubbles: true,
+        })
+      );
+      expect(window.document.location.hash.toLowerCase()).toEqual("#nos-services");
     });
   });
 });

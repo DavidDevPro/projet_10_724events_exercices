@@ -1,4 +1,5 @@
-{/* variable de base :
+/* variable MONTHS dans son état de base:
+
 export const MONTHS = {
   1: "janvier",
   2: "février",
@@ -12,7 +13,7 @@ export const MONTHS = {
   10: "octobre",
   11: "novembre",
   12: "décembre",
-}; */}
+}; */
 
 
 export const MONTHS = {

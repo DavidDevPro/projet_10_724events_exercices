@@ -7,18 +7,23 @@ import "./style.scss";
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
-  const byDateDesc = data?.focus.sort((evtA, evtB) =>
-    new Date(evtB.date) < new Date(evtA.date) ? -1 : 1 // inversion de evtA et evtB, l'ordre d'affichage est demandé dans cet ordre la.
-  );
-  const nextCard = () => {
-    setTimeout(
-      () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
-      5000 // l'index va de 0 à 2 et length va de 1 à 3 donc byDateDesc.lenght -1 pour l'image blanche
-    );
-  };
+  // Tri des événements par date décroissante
+  const byDateDesc = data?.focus
+    ? data?.focus.sort(
+      (evtA, evtB) => new Date(evtB.date) - new Date(evtA.date)
+      // inversion de evtA et evtB, l'ordre d'affichage est demandé dans cet ordre la.
+    )
+    : [];
+
   useEffect(() => {
-    nextCard();
-  });
+
+    const interval = setInterval(() => {
+      setIndex((current) =>
+        current < byDateDesc.length - 1 ? current + 1 : 0
+      ); // l'index va de 0 à 2 et length va de 1 à 3 donc byDateDesc.lenght -1 pour l'image blanche
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [index, byDateDesc.length]);
 
   return (
     <div className="SlideCardList">

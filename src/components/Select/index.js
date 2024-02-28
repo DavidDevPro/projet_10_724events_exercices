@@ -18,7 +18,7 @@ const Select = ({
   const changeValue = (newValue) => {
     onChange();
     setValue(newValue);
-    setCollapsed(newValue);
+    setCollapsed(true); // setCollapsed(newValue) n'est pas valide !
   };
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">

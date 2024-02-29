@@ -18,7 +18,7 @@ const Select = ({
   const changeValue = (newValue) => {
     onChange();
     setValue(newValue);
-    setCollapsed(true); // setCollapsed(newValue) n'est pas valide !
+    setCollapsed(true); // setCollapsed(newValue) n'est pas valide ! le colapse ne se ferme pas lorsqu'une categorie est sélectionnée.
   };
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">

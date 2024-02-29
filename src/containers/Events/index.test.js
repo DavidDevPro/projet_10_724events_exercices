@@ -37,7 +37,7 @@ const data = {
   ],
 };
 
-describe("When Events is created", () => {
+describe("When Events is created", () => { //vérification si la liste des cartes d'évenement est affichée sur les deux pages.
   it("a list of event card is displayed", async () => {
     api.loadData = jest.fn().mockReturnValue(data);
     render(
@@ -47,7 +47,7 @@ describe("When Events is created", () => {
     );
     await screen.findByText("avril");
   });
-  describe("and an error occured", () => {
+  describe("and an error occured", () => { // affichage d'un message d'erreur en cas d'echec de chargement des données.
     it("an error message is displayed", async () => {
       api.loadData = jest.fn().mockRejectedValue();
       render(

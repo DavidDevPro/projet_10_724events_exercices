@@ -6,6 +6,7 @@
   color: $black;
   align-items: flex-start;
   margin: 8px;
+
   span {
     font-size: 12pt;
     margin-bottom: 4px;
@@ -21,11 +22,10 @@ input {
   border: none;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
   color: $black;
+  font-family: "Manrope", sans-serif;
   &:focus {
     color: $primary;
   }
-
-  font-family: "Manrope", sans-serif;
 }
 textarea {
   height: 336px;
@@ -36,9 +36,8 @@ textarea {
   border: none;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
   color: $black;
+  font-family: "Manrope", sans-serif;
   &:focus {
     color: $primary;
   }
-
-  font-family: "Manrope", sans-serif;
 }

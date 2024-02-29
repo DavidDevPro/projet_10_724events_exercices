@@ -16,7 +16,8 @@ const Select = ({
   const [value, setValue] = useState();
   const [collapsed, setCollapsed] = useState(true);
   const changeValue = (newValue) => {
-    onChange();
+    onChange(newValue); // ajout de newValue sinon onchange=null sur toutes les options de choix de catégories
+    console.log(newValue);
     setValue(newValue);
     setCollapsed(true); // setCollapsed(newValue) n'est pas valide ! le colapse ne se ferme pas lorsqu'une categorie est sélectionnée.
   };

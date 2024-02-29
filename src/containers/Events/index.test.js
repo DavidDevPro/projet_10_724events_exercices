@@ -59,7 +59,7 @@ describe("When Events is created", () => { //vérification si la liste des carte
     });
   });
   describe("and we select a category", () => {
-    it.only("an filtered list is displayed", async () => {
+    it.only("an filtered list is displayed", async () => { // la liste filtée d'événement est affichée?
       api.loadData = jest.fn().mockReturnValue(data);
       render(
         <DataProvider>
@@ -68,26 +68,26 @@ describe("When Events is created", () => { //vérification si la liste des carte
       );
       await screen.findByText("Forum #productCON");
       fireEvent(
-        await screen.findByTestId("collapse-button-testid"),
+        await screen.findByTestId("collapse-button-testid"),// cliquer sur le bouton collapse pour afficher les catégories
         new MouseEvent("click", {
           cancelable: true,
           bubbles: true,
         })
       );
       fireEvent(
-        (await screen.findAllByText("soirée entreprise"))[0],
+        (await screen.findAllByText("soirée entreprise"))[0],// cliquer sur la première catégorie
         new MouseEvent("click", {
           cancelable: true,
           bubbles: true,
         })
       );
 
-      await screen.findByText("Conférence #productCON");
-      expect(screen.queryByText("Forum #productCON")).not.toBeInTheDocument();
+      await screen.findByText("Conférence #productCON"); // Attendre que la carte d'événement correspondante à la catégorie sélectionnée soit affichée
+      expect(screen.queryByText("Forum #productCON")).not.toBeInTheDocument(); // Vérifier que l'événement non filtré n'est pas présent dans le DOM
     });
   });
 
-  describe("and we click on an event", () => {
+  describe("and we click on an event", () => { // affichage des détails d'un événement sélectionné
     it("the event detail is displayed", async () => {
       api.loadData = jest.fn().mockReturnValue(data);
       render(
@@ -103,7 +103,7 @@ describe("When Events is created", () => { //vérification si la liste des carte
           bubbles: true,
         })
       );
-
+      // Attendre que les détails de l'événement sélectionné soient affichés
       await screen.findByText("24-25-26 Février");
       await screen.findByText("1 site web dédié");
     });

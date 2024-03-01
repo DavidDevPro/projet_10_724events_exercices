@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+
 import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
 
 import "./style.scss";
 
 const Slider = () => {
+
   const { data } = useData();
   const [index, setIndex] = useState(0);
   // Tri des événements par date décroissante
@@ -24,13 +26,19 @@ const Slider = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, [index, byDateDesc.length]);
-
+  const handleOptionChange = (e) => {
+    // Gestion du changement d'option dans la pagination
+    setIndex(parseInt(e.target.value, 10)); // Mise à jour de l'index en fonction de la valeur sélectionnée
+  };
   return (
     <div className="SlideCardList">
-      {byDateDesc.map((event, idx) => (
-        <>
+      {byDateDesc?.map(
+        (
+          event,
+          idx
+        ) => (
           <div
-            key={`eventIdx_${event.title}`}
+            key={`eventIdx_${event.title}`} // Clé unique pour chaque événement
             className={`SlideCard SlideCard--${index === idx ? "display" : "hide"
               }`}
           >
@@ -43,24 +51,28 @@ const Slider = () => {
               </div>
             </div>
           </div>
-          <div className="SlideCard__paginationContainer">
-            <div className="SlideCard__pagination">
-              {byDateDesc.map((_, radioIdx) => (
-                <input
-                  key={`radioIdx_${_.title}`} // Clé unique pour chaque bouton
-                  type="radio"
-                  name="radio-button"
-                  value={radioIdx} // ajout de value sur les input
-                  checked={index === radioIdx} // verification si l'index correspond à l'input
-                  readOnly // ajout de readOnly, aucun événement au click sur les input radio
-                />
-              ))}
-            </div>
-          </div>
-        </>
-      ))}
+        )
+      )}
+      <div className="SlideCard__paginationContainer">
+        <div className="SlideCard__pagination">
+          {byDateDesc.map(
+            (
+              event,
+              radioIdx
+            ) => (
+              <input
+                key={`radioIdx_${event.title}`} // Clé unique pour chaque bouton
+                type="radio"
+                name="radio-button"
+                value={radioIdx}
+                checked={index === radioIdx} // Vérification si l'index correspond au bouton
+                onChange={handleOptionChange} // Gestion du changement d'option
+              />
+            )
+          )}
+        </div>
+      </div>
     </div>
   );
 };
-
-export default Slider;
+export default Slider; 

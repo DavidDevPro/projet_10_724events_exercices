@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Slider from "./index";
 import { api, DataProvider } from "../../contexts/DataContext";
 
@@ -41,4 +41,5 @@ describe("When slider is created", () => {
       "Oeuvre à la coopération entre le secteur public et le privé."
     );
   });
+
 });

@@ -19,7 +19,7 @@ export const api = {
 export const DataProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
-  const [last, setLast] = useState(null) // ajout d'un useState sur last
+  const [last, setLast] = useState(null) // Création d'une variable d'état nommée last.
   const getData = useCallback(async () => {
     try {
       const loadedData = await api.loadData()
